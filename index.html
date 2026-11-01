@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6fa">
+    <meta name="description" content="A simple, focused to-do list to help you keep track of what matters.">
+    <title>My Tasks — To-do list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="todo-container">
+        <header class="app-header">
+            <div class="brand-mark" aria-hidden="true">✓</div>
+            <p class="eyebrow">YOUR PERSONAL SPACE</p>
+            <h1>My tasks<span>.</span></h1>
+            <p class="subtitle">A little progress adds up. What’s on your mind?</p>
+        </header>
+
+        <form class="todo-input-section" id="todo-form">
+            <label class="sr-only" for="todo-input">New task</label>
+            <input type="text" id="todo-input" placeholder="e.g. Take a walk after lunch" maxlength="160" autocomplete="off" required>
+            <button id="add-btn" type="submit"><span aria-hidden="true">+</span> Add task</button>
+        </form>
+
+        <section class="task-card" aria-label="Your task list">
+            <div class="list-header">
+                <div>
+                    <h2>Today</h2>
+                    <p id="task-count" class="task-count" aria-live="polite">0 tasks left</p>
+                </div>
+                <div class="filters" role="group" aria-label="Filter tasks">
+                    <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-btn" type="button" data-filter="active" aria-pressed="false">Active</button>
+                    <button class="filter-btn" type="button" data-filter="completed" aria-pressed="false">Done</button>
+                </div>
+            </div>
+
+            <ul id="todo-list" class="todo-list" aria-label="Tasks"></ul>
+            <div id="empty-state" class="empty-state">
+                <div class="empty-icon" aria-hidden="true">✦</div>
+                <h3 id="empty-title">A fresh start</h3>
+                <p id="empty-message">Add a task above and make today count.</p>
+            </div>
+
+            <footer class="list-footer">
+                <span id="list-summary">0 tasks</span>
+                <button id="clear-completed" class="text-button" type="button" hidden>Clear completed</button>
+            </footer>
+        </section>
+
+        <p id="storage-notice" class="storage-notice" role="status" hidden></p>
+        <p class="footer-note">One thing at a time <span aria-hidden="true">·</span> You’ve got this</p>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
