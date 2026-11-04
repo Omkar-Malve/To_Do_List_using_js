@@ -3,6 +3,7 @@
 const STORAGE_KEY = "my-tasks";
 const form = document.querySelector("#todo-form");
 const input = document.querySelector("#todo-input");
+const categoryInput = document.querySelector("#todo-category");
 const list = document.querySelector("#todo-list");
 const count = document.querySelector("#task-count");
 const summary = document.querySelector("#list-summary");
@@ -38,7 +39,10 @@ function loadTasks() {
             typeof task.id === "string" &&
             typeof task.text === "string" &&
             typeof task.completed === "boolean"
-        );
+        ).map((task) => ({
+            ...task,
+            category: task.category === "work" ? "work" : "personal"
+        }));
     } catch (error) {
         console.error("Could not load saved tasks:", error);
         showStorageNotice("Saved tasks could not be loaded. Your new tasks may not be saved.");
@@ -82,6 +86,10 @@ function renderTasks() {
         text.className = "task-text";
         text.textContent = task.text;
 
+        const category = document.createElement("span");
+        category.className = `task-category is-${task.category}`;
+        category.textContent = task.category === "work" ? "Work" : "Personal";
+
         const remove = document.createElement("button");
         remove.className = "delete-btn";
         remove.type = "button";
@@ -89,7 +97,7 @@ function renderTasks() {
         remove.setAttribute("aria-label", `Delete ${task.text}`);
         remove.addEventListener("click", () => deleteTask(task.id));
 
-        item.append(toggle, text, remove);
+        item.append(toggle, text, category, remove);
         list.append(item);
     });
 
@@ -110,7 +118,7 @@ function renderTasks() {
     }
 }
 
-function addTask(text) {
+function addTask(text, category) {
     const id = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
         ? crypto.randomUUID()
         : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -118,6 +126,7 @@ function addTask(text) {
     tasks.unshift({
         id,
         text,
+        category,
         completed: false
     });
     saveTasks();
@@ -146,7 +155,7 @@ form.addEventListener("submit", (event) => {
         return;
     }
 
-    addTask(text);
+    addTask(text, categoryInput.value);
     input.value = "";
     input.focus();
 });
