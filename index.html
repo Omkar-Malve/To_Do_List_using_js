@@ -20,6 +20,11 @@
         <form class="todo-input-section" id="todo-form">
             <label class="sr-only" for="todo-input">New task</label>
             <input type="text" id="todo-input" placeholder="e.g. Take a walk after lunch" maxlength="160" autocomplete="off" required>
+            <label class="sr-only" for="todo-category">Task category</label>
+            <select id="todo-category" aria-label="Task category">
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+            </select>
             <button id="add-btn" type="submit"><span aria-hidden="true">+</span> Add task</button>
         </form>
 

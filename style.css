@@ -96,7 +96,8 @@ h1 span {
 }
 
 .todo-input-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 10px;
     padding: 9px;
     border: 1px solid rgba(226, 226, 237, .9);
@@ -114,6 +115,22 @@ h1 span {
     background: transparent;
     color: #24253a;
     font-size: 14px;
+}
+
+.todo-input-section select {
+    min-width: 112px;
+    padding: 0 11px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: #fff;
+    color: #444559;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.todo-input-section select:focus-visible {
+    outline: 3px solid rgba(113, 100, 223, .25);
+    outline-offset: 2px;
 }
 
 .todo-input-section input::placeholder {
@@ -281,6 +298,24 @@ h1 span {
     transition: color .16s ease;
 }
 
+.task-category {
+    flex: 0 0 auto;
+    padding: 4px 8px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.task-category.is-personal {
+    background: #f3f1ff;
+    color: var(--purple-dark);
+}
+
+.task-category.is-work {
+    background: #edf5ff;
+    color: #416b9c;
+}
+
 .todo-item.is-completed .task-text {
     color: #a1a2af;
     text-decoration: line-through;
@@ -430,6 +465,15 @@ button:focus-visible {
     .list-header {
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .todo-input-section {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .todo-input-section input {
+        grid-column: 1 / -1;
+        min-height: 40px;
     }
 
     .filters {

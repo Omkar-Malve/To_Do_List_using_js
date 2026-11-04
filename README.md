@@ -8,7 +8,7 @@ Open `index.html` in a browser. No dependencies or build step are needed.
 
 ## Features
 
-- Add, complete, and delete tasks
+- Add tasks with a Personal or Work category, complete them, and delete them
 - Filter tasks by all, active, or completed
 - Clear completed tasks
 - Save tasks in browser local storage
